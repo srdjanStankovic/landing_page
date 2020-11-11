@@ -2,6 +2,7 @@
 import logging
 import yaml
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG)
@@ -9,6 +10,17 @@ application = Flask(__name__)
 
 ## TODO: setup base with email and date&time
 utc = datetime.utcnow()
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_base.sqlite3'
+
+db = SQLAlchemy(application)
+class users_base(db.Model):
+   id = db.Column('users_id', db.Integer, primary_key = True)
+   email = db.Column(db.String(254))
+   datetime = db.Column(db.Integer)
+
+   def __init__(self, email, datetime):
+      self.email = email
+      self.datetime = datetime
 
 def read_configs():
     parameters = [""] * 5
@@ -42,5 +54,6 @@ def landing_page():
 
 if __name__ == '__main__':
     logging.info("Application started!")
+    db.create_all()
     parameters = read_configs()
     application.run(parameters[0], parameters[1], True)
