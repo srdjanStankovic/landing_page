@@ -1,0 +1,75 @@
+html { font-family: Georgia; background: #FFFF; padding: 1rem; }
+body { margin: auto;}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.division {
+  text-align: center;
+  font-size: 5em;
+  margin: 0;
+}
+
+p {
+  font-size: 0.4em;
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+h1 {
+font-size: 1em;
+margin: 5px;
+padding: 0px;
+}
+
+input[type=input_field] {
+  width: 80%;
+  padding: 1px 1px;
+  display: inline-block;
+  border: 0px;
+  background-color: #e6e6e0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Georgia;
+  font-size: 0.7em;
+}
+
+input[type=submit] {
+  align-self: start;
+  min-width: 5em;
+  min-height: 1em;
+  border: 0;
+  background-color: #e6e6e0;
+  font-family: Georgia;
+  font-size: 0.7em;
+}
+
+ul {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.social-icons {
+  text-align: center;
+  }
+.social-icons li {
+  display:inline-block;
+  list-style-type:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  }
+
+.social-icons li img {
+  width:30px;
+  height:30px;
+  margin-right: 1px;
+}
