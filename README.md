@@ -7,6 +7,11 @@ Can be done by:
  - new favicon.icon
  - changing style.ccs into static directory
 
+## Prerequisite
+ - Python3
+ - pip3
+ - Run following in terminal: `pip3 install -r requirements.txt`
+
 ## Running
 Invoke following in repo directory:
  ```
