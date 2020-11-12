@@ -31,10 +31,15 @@ def landing_page():
 
             utc = datetime.utcnow()
             entrance = users_database(email, utc)
-            db.session.add(entrance)
-            db.session.commit()
+            try:
+                db.session.add(entrance)
+                db.session.commit()
+            except:
+                #TODO: raise popup
+                logging.error("Failed to enter new record in the database!")
+            #TODO: send welcome email!
         else:
-            #TODO: raise oninvalid
+            #TODO: raise popup
             logging.error("Not valid email!")
 
     return render_template("index.html", parameters = parameters)
