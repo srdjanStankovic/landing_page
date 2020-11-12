@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 import logging
 import yaml
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from email_validator import validate_email, EmailNotValidError
 
 logging.basicConfig(level=logging.DEBUG)
 application = Flask(__name__)
 
-## TODO: setup base with email and date&time
-utc = datetime.utcnow()
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_base.sqlite3'
 
 db = SQLAlchemy(application)
@@ -48,12 +47,42 @@ def read_configs():
         logging.info(parameters)
         return parameters
 
-@application.route("/")
+def validate_inserted_email(email):
+    logging.debug(email)
+    if email == None:
+        return False
+
+    try:
+      valid = validate_email(email)
+      email = valid.email
+    except EmailNotValidError as e:
+      # email is not valid, exception message is human-readable
+      logging.error(str(e))
+      return False
+
+    return True
+
+@application.route("/",methods = ['POST', 'GET'])
 def landing_page():
+    if request.method == "POST":
+        logging.debug("It's POST")
+    elif request.method == "GET":
+        email = request.args.get('input_field')
+        if validate_inserted_email(email):
+            logging.debug("It's GET\n Email is: " + email)
+
+            utc = datetime.utcnow()
+            entrance = users_base(email, utc)
+            db.session.add(entrance)
+            db.session.commit()
+        else:
+            #TODO: raise msg to client
+            logging.error("Not valid email!")
+
     return render_template("index.html", parameters = parameters)
 
 if __name__ == '__main__':
-    logging.info("Application started!")
+    logging.info("Web server started!")
     db.create_all()
     parameters = read_configs()
     application.run(parameters[0], parameters[1], True)
