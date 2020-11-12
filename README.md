@@ -6,6 +6,7 @@ Can be done by:
  - uploading new logo image
  - new favicon.icon
  - changing style.ccs into static directory
+ - server configuration is possible over `config.yaml` file
 
 ## Prerequisite
  - Python3
@@ -19,3 +20,6 @@ Invoke following in repo directory:
  ```
 
  Server will run at http://127.127.127.127:8080/
+
+## Deployment
+TODO!
