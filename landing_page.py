@@ -7,6 +7,7 @@ from utils import read_configs, validate_inserted_email
 
 logging.basicConfig(level=logging.DEBUG)
 application = Flask(__name__)
+parameters = [""] * 5
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
 
