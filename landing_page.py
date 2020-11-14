@@ -13,8 +13,8 @@ application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite
 
 db = SQLAlchemy(application)
 class users_database(db.Model):
-   id = db.Column('users_id', db.Integer, primary_key = True)
-   email = db.Column(db.String(254))
+   logging.debug("Setup database")
+   email = db.Column("email", db.String(254), primary_key = True)
    datetime = db.Column(db.Integer)
 
    def __init__(self, email, datetime):
