@@ -5,7 +5,7 @@ body { margin: auto;}
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 65%;
 }
 
 .division {
@@ -33,13 +33,14 @@ padding: 0px;
 input[type=email] {
   width: 80%;
   padding: 1px 1px;
+  min-height: 2em;
   display: inline-block;
   border: 0px;
   background-color: #e6e6e0;
   box-sizing: border-box;
   text-align: center;
   font-family: Georgia;
-  font-size: 0.7em;
+  font-size: 0.5em;
 }
 
 input[type=submit] {
@@ -70,7 +71,7 @@ ul {
   }
 
 .social-icons li img {
-  width:30px;
-  height:30px;
+  width:50px;
+  height:50px;
   margin-right: 1px;
 }
