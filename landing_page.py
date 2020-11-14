@@ -3,11 +3,11 @@ import logging
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from utils import read_configs, validate_inserted_email
+from utils import read_configs, validate_inserted_email, NMR_CONFIG_PAR
 
 logging.basicConfig(level=logging.DEBUG)
 application = Flask(__name__)
-parameters = [""] * 7
+parameters = [""] * NMR_CONFIG_PAR
 
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
 

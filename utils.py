@@ -3,8 +3,10 @@ import logging
 import yaml
 from email_validator import validate_email, EmailNotValidError
 
+NMR_CONFIG_PAR = 8
+
 def read_configs():
-    parameters = [""] * 7
+    parameters = [""] * NMR_CONFIG_PAR
 
     with open(r'config.yaml') as file:
         # The FullLoader parameter handles the conversion from YAML
@@ -28,6 +30,8 @@ def read_configs():
                 parameters[5] = value
             elif key == "paragraph":
                 parameters[6] = value
+            elif key == "central_image":
+                parameters[7] = value
             else:
                 logging.error("Unsupported key: " + key)
         logging.info(parameters)
