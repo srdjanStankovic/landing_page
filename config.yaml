@@ -3,6 +3,8 @@
 port: 80
 host: "0.0.0.0"
 
+central_image: "static/logo.svg"
+
 instagram: "https://www.instagram.com/"
 facebook: "https://www.facebook.com/"
 youtube: "https://www.youtube.com/"

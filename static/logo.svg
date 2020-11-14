@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300mm"
+   height="300mm"
+   viewBox="0 0 300 300"
+   version="1.1"
+   id="svg8"
+   inkscape:export-filename="/home/srdjanstankovic/Downloads/A.png"
+   inkscape:export-xdpi="120"
+   inkscape:export-ydpi="120"
+   inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"
+   sodipodi:docname="A.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="400"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1439"
+     inkscape:window-height="1016"
+     inkscape:window-x="2042"
+     inkscape:window-y="147"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="circle"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       id="path833"
+       style="fill:#000000;stroke:#000000;stroke-width:0.272137;stop-color:#000000"
+       d="M 100.52576,4.2983813 A 149.57153,149.96524 0 0 0 0.42851117,145.82204 149.57153,149.96524 0 0 0 24.137658,226.84397 Z m 98.94848,0 76.38863,222.5455887 A 149.57153,149.96524 0 0 0 299.57149,145.82204 149.57153,149.96524 0 0 0 199.47424,4.2983813 Z M 149.87159,49.639799 114.19314,172.97077 h 71.61372 z M 99.048847,222.02049 81.357421,279.06197 a 149.57153,149.96524 0 0 0 68.642839,16.72508 149.57153,149.96524 0 0 0 68.53948,-16.67187 l -18.10173,-57.09469 z" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="A">
+    <g
+       aria-label="A"
+       transform="matrix(1.1254554,0,0,0.88504503,2.1041116e-6,0.58818991)"
+       id="text899"
+       style="font-size:467.084px;line-height:1.25;font-family:Sacramento;-inkscape-font-specification:Sacramento;word-spacing:0px;stroke-width:2.43273" />
+  </g>
+</svg>
