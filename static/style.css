@@ -5,7 +5,7 @@ body { margin: auto;}
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 65%;
+  width: 90%;
 }
 
 .division {
@@ -31,16 +31,15 @@ padding: 0px;
 }
 
 input[type=email] {
-  width: 80%;
+  width: 85%;
   padding: 1px 1px;
-  min-height: 2em;
   display: inline-block;
   border: 0px;
-  background-color: #e6e6e0;
+  background-color: #FFF5AF;
   box-sizing: border-box;
   text-align: center;
   font-family: Georgia;
-  font-size: 0.5em;
+  font-size: 0.7em;
 }
 
 input[type=submit] {
@@ -48,7 +47,7 @@ input[type=submit] {
   min-width: 5em;
   min-height: 1em;
   border: 0;
-  background-color: #e6e6e0;
+  background-color: #FFF5AF;
   font-family: Georgia;
   font-size: 0.7em;
 }
