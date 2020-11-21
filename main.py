@@ -6,12 +6,13 @@ from datetime import datetime
 from utils import read_configs, validate_inserted_email, NMR_CONFIG_PAR
 
 logging.basicConfig(level=logging.DEBUG)
-application = Flask(__name__)
-parameters = [""] * NMR_CONFIG_PAR
+app = Flask(__name__)
+parameters = [""] * 8
 
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
 
-db = SQLAlchemy(application)
+db = SQLAlchemy(app)
 class users_database(db.Model):
    logging.debug("Setup database")
    email = db.Column("email", db.String(254), primary_key = True)
@@ -21,7 +22,7 @@ class users_database(db.Model):
       self.email = email
       self.datetime = datetime
 
-@application.route("/",methods = ['POST', 'GET'])
+@app.route("/",methods = ['POST', 'GET'])
 def landing_page():
     logging.info("Web server started!")
 
@@ -47,12 +48,19 @@ def landing_page():
 
     return render_template("index.html", parameters = parameters)
 
+def initialization():
+    logging.info("Configuring web server")
+    global parameters
+    try:
+        parameters = read_configs()
+        db.create_all()
+    except:
+        logging.error("Web server failed to configure!")
+        render_template("maintaine.html")
+
+    logging.info("Web server configured!")
+
+initialization()
 
 if __name__ == '__main__':
-    logging.info("Starting web server")
-    try:
-        db.create_all()
-        parameters = read_configs()
-        application.run(parameters[0], parameters[1], True)
-    except:
-        logging.error("Web server failed to start!")
+    app.run(debug=True)
