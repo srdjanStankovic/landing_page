@@ -14,7 +14,7 @@ def read_configs():
         config_list = yaml.load(file, Loader=yaml.FullLoader)
 
         for key, value in config_list.items():
-            logging.info(key + " : " + str(value))
+            logging.debug(key + " : " + str(value))
 
             if key == "host":
                 parameters[0] = value
@@ -34,7 +34,7 @@ def read_configs():
                 parameters[7] = value
             else:
                 logging.error("Unsupported key: " + key)
-        logging.info(parameters)
+        logging.debug(parameters)
         return parameters
 
 def validate_inserted_email(email):

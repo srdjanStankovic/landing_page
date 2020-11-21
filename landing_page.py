@@ -23,6 +23,8 @@ class users_database(db.Model):
 
 @application.route("/",methods = ['POST', 'GET'])
 def landing_page():
+    logging.info("Web server started!")
+
     if request.method == "POST":
         logging.debug("It's POST")
     elif request.method == "GET":
@@ -47,7 +49,10 @@ def landing_page():
 
 
 if __name__ == '__main__':
-    logging.info("Web server started!")
-    db.create_all()
-    parameters = read_configs()
-    application.run(parameters[0], parameters[1], True)
+    logging.info("Starting web server")
+    try:
+        db.create_all()
+        parameters = read_configs()
+        application.run(parameters[0], parameters[1], True)
+    except:
+        logging.error("Web server failed to start!")
