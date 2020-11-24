@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 import logging
 import yaml
+from enum import IntEnum
 from email_validator import validate_email, EmailNotValidError
+
+class email_validation(IntEnum):
+   FALSE = -1
+   NONE = 0
+   TRUE = 1
 
 NMR_CONFIG_PAR = 8
 
@@ -40,7 +46,7 @@ def read_configs():
 def validate_inserted_email(email):
     logging.debug(email)
     if email == None:
-        return False
+        return email_validation.NONE
 
     try:
       valid = validate_email(email)
@@ -48,6 +54,6 @@ def validate_inserted_email(email):
     except EmailNotValidError as e:
       # email is not valid, exception message is human-readable
       logging.error(str(e))
-      return False
+      return email_validation.FALSE
 
-    return True
+    return email_validation.TRUE
