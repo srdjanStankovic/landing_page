@@ -5,7 +5,7 @@ body { margin: auto;}
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 55%;
 }
 
 .division {
@@ -13,64 +13,86 @@ body { margin: auto;}
   font-size: 5em;
   margin-left: 2em;
   margin-right: 2em;
+  margin-top: 0em;
+  margin-bottom: 0.1em;
+  padding: 0px;
+}
+
+h1 {
+  font-size: 1em;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 p {
   font-size: 0.4em;
   display: block;
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-  margin-left: 0;
-  margin-right: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-h1 {
-font-size: 1em;
-margin: 5px;
-padding: 0px;
+form {
+  text-align: center;
+  margin-top: 2em;
+  padding: 0px;
 }
 
 input[type=email] {
-  width: 85%;
-  padding: 1px 1px;
-  display: inline-block;
-  border: 0px;
-  background-color: #FFF5AF;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-height: 2em;
+  background-color: #FFFF;
   box-sizing: border-box;
-  text-align: center;
   font-family: Georgia;
-  font-size: 0.7em;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 input[type=submit] {
   align-self: start;
-  min-width: 5em;
-  min-height: 1em;
+  min-width: 7em;
+  min-height: 2em;
+  margin-top: 0.3em;
+  display: inline-block;
   border: 0;
-  background-color: #FFF5AF;
+  background-color: #000000;
   font-family: Georgia;
-  font-size: 0.7em;
+  text-align: center;
+  font-size: 1.2em;
+  color: #FFFF;
 }
 
 ul {
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
+  margin-top: 0px;
+  margin-bottom: 0px;
   margin-left: 0;
   margin-right: 0;
+  padding-inline-start: 0px;
 }
 
 .social-icons {
   text-align: center;
-  }
+}
+
 .social-icons li {
-  display:inline-block;
   list-style-type:none;
-  -webkit-user-select:none;
   -moz-user-select:none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
   }
 
+.social-icons li a {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+}
+
 .social-icons li img {
-  width:50px;
-  height:50px;
-  margin-right: 1px;
+  max-width: 35px;
+  max-height:35px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

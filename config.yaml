@@ -1,6 +1,6 @@
 #config.yml for configuring server
 
-port: 80
+port: 8080
 host: "0.0.0.0"
 
 central_image: "static/logo.svg"
@@ -9,5 +9,5 @@ instagram: "https://www.instagram.com/"
 facebook: "https://www.facebook.com/"
 youtube: "https://www.youtube.com/"
 
-header: "place_brand_name_here is comming soon"
-paragraph: "It's going to be amazing! Subscribe to stay in touch with us. To get usefull materials in form of the video instractions, user manuals and flayers."
+header: "pedaGoga is comming soon"
+paragraph: "It's going to be useful! Subscribe to stay in touch with us. To get materials in form of the video instructions, user manuals, and flayers."
