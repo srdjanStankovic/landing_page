@@ -9,10 +9,12 @@
      <div class="division">
        <h1>{{parameters[5]}}</h1>
        <p>{{parameters[6]}}</p>
-       <form>
-         <input name="email" id="email" type="email" placeholder="Enter E-mail address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-         <input type="submit" value="Submit">
-       </form>
+     </div>
+     <form class="form">
+       <input name="email" id="email" type="email" placeholder="{{input_message}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+       <input type="submit" value="Submit">
+     </form>
+     <div>
        <ul class="social-icons">
          <!--<li><a href={{parameters[2]}}><img src='static/social_networks_icons/facebook_logo.png' /></a></li>-->
          <li><a href={{parameters[3]}}><img src='static/social_networks_icons/instagram_logo.png' /></a></li>
