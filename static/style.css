@@ -13,7 +13,7 @@ body { margin: auto;}
   font-size: 5em;
   margin-left: 3em;
   margin-right: 3em;
-  margin-top: 0.1em;
+  margin-top: 0em;
   margin-bottom: 0.1em;
   padding: 0px;
 }
@@ -31,37 +31,35 @@ p {
   margin-bottom: 0px;
 }
 
-.form {
+form {
   text-align: center;
-  font-size: 5em;
-  margin: 0px;
+  margin-top: 2em;
   padding: 0px;
 }
 
-.form input[type=email] {
-  width: 85%;
-  padding: 1px 1px;
-  display: inline-block;
-  border: 0px;
+input[type=email] {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-height: 2em;
   background-color: #FFFF;
   box-sizing: border-box;
-  text-align: center;
   font-family: Georgia;
-  font-size: 0.3em;
-  color: #FFFF;
+  text-align: center;
+  font-size: 1.2em;
 }
 
-.form input[type=submit] {
+input[type=submit] {
   align-self: start;
   min-width: 7em;
-  min-height: 1.5em;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  min-height: 2em;
+  margin-top: 0.3em;
+  display: inline-block;
   border: 0;
   background-color: #000000;
-  text-align: center;
   font-family: Georgia;
-  font-size: 0.3em;
+  text-align: center;
+  font-size: 1.2em;
   color: #FFFF;
 }
 
@@ -75,7 +73,8 @@ ul {
 
 .social-icons {
   text-align: center;
-  }
+}
+
 .social-icons li {
   display:inline-block;
   list-style-type:none;
@@ -93,8 +92,8 @@ ul {
 }
 
 .social-icons li img {
-  max-width: 40px;
-  max-height:40px;
+  max-width: 35px;
+  max-height:35px;
   margin-top: 0px;
   margin-bottom: 0px;
 }
