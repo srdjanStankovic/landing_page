@@ -11,8 +11,8 @@ body { margin: auto;}
 .division {
   text-align: center;
   font-size: 5em;
-  margin-left: 3em;
-  margin-right: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
   margin-top: 0em;
   margin-bottom: 0.1em;
   padding: 0px;
@@ -76,7 +76,6 @@ ul {
 }
 
 .social-icons li {
-  display:inline-block;
   list-style-type:none;
   -moz-user-select:none;
   margin-top: 0px;
