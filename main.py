@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 import logging
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 from datetime import datetime
 from utils import read_configs, validate_inserted_email, NMR_CONFIG_PAR, email_validation
 
 logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 parameters = [""] * NMR_CONFIG_PAR
+input_message =  "Enter E-mail address"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
@@ -22,45 +24,44 @@ class users_database(db.Model):
       self.email = email
       self.datetime = datetime
 
-@app.route("/",methods = ['POST', 'GET'])
-def landing_page():
+@app.route("/", methods = ['GET'])
+def landing_page_get():
+    logging.debug("It's GET")
+    return render_template("index.html", parameters = parameters, input_message = input_message)
+
+@app.route("/", methods = ['POST'])
+def landing_page_post():
     email = ''
+    global input_message
+    logging.debug("It's POST")
     logging.info("Web server started!")
 
-    if request.method == "POST":
-        logging.debug("It's POST")
-    elif request.method == "GET":
-        email = request.args.get('email')
-        validation = validate_inserted_email(email)
-        logging.debug(str(validation))
-        if validation == email_validation.NONE:
-            input_message = "Enter E-mail address"
-        elif validation == email_validation.TRUE:
-            logging.debug("It's GET\n Email is: " + email)
+    email = request.form.get('email')
+    validation = validate_inserted_email(email)
+    logging.debug("Entered email is: " + email)
 
-            # checking if user already exists
-            user = Users.query.filter_by(email = email).first()
+    if validation == email_validation.NONE:
+        input_message = "Enter E-mail address"
+    elif validation == email_validation.TRUE:
+        utc = datetime.utcnow()
+        entrance = users_database(email, utc)
+        try:
+            db.session.add(entrance)
+            db.session.commit()
+            input_message = "Thanks for subscribing"
+            logging.debug(input_message)
+        except exc.IntegrityError:
+            db.session.rollback()
+            input_message = "User already exist. Please enter new email."
+            logging.error("User already exist!")
+        except:
+            input_message = "Please enter again"
+            logging.error("Failed to enter new record in the database!")
+    else:
+        input_message = "Not valid email. Please enter new email."
+        logging.error("Not valid email. Please enter new email.")
 
-            if not user:
-                utc = datetime.utcnow()
-                entrance = users_database(email, utc)
-                try:
-                    db.session.add(entrance)
-                    db.session.commit()
-                    input_message = "Thanks for subscribing"
-                    logging.debug(input_message)
-                except:
-                    input_message = "Please enter again"
-                    logging.error("Failed to enter new record in the database!")
-            else:
-                input_message = "User already exist. Please enter new email."
-                logging.error("User already exist!")
-
-        else:
-            input_message = "Not valid email. Enter again."
-            logging.error("Not valid email!")
-
-    return render_template("index.html", parameters = parameters, input_message = input_message)
+    return redirect(url_for("landing_page_get"))
 
 def initialization():
     logging.info("Configuring web server")

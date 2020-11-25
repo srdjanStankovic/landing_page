@@ -10,8 +10,8 @@
        <h1>{{parameters[5]}}</h1>
        <p>{{parameters[6]}}</p>
      </div>
-     <form type="form">
-         <input type="email" id="email" placeholder="{{input_message}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+     <form type="form" method="post">
+         <input type="email" name="email" placeholder="{{input_message}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
          <input type="submit" value="Submit">
      </form>
      <div class="division">
