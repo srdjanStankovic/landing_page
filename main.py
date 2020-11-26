@@ -27,6 +27,7 @@ class users_database(db.Model):
 @app.route("/", methods = ['GET'])
 def landing_page_get():
     logging.debug("It's GET")
+
     return render_template("index.html", parameters = parameters, input_message = input_message)
 
 @app.route("/", methods = ['POST'])
