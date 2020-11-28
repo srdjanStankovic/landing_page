@@ -97,7 +97,18 @@ ul {
   margin-bottom: 0px;
 }
 
-th, td {
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
   text-align: center;
-  vertical-align: middle;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
