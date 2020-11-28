@@ -64,6 +64,17 @@ def landing_page_post():
 
     return redirect(url_for("landing_page_get"))
 
+@app.route("/view")
+def view():
+    readed = []
+
+    logging.debug(users_database.query.all())
+    users = users_database.query.all()
+    readed_dict = {user.email: user.datetime for user in users}
+
+    return render_template("view.html", readed = readed_dict)
+
+
 def initialization():
     logging.info("Configuring web server")
     global parameters
