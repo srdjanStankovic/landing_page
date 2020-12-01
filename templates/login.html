@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html  lang = "en">
+  <head>
+    <title>pedaGoga Login</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <form method="post">
+        <h2>Sign in</h2>
+        <img src="static/favicon.ico" alt="logo" class="sign_in_logo">
+        <label for="Username">Username</label><br>
+        <input name="Username" type="login" id="Username" placeholder="Enter Username" required><br>
+
+        <label for="Password">Password</label><br>
+        <input name="Password" type="login" id="Password" placeholder="Enter Password" required><br>
+
+        <input type="Submit" value="Sign in">
+    </form>
+  </body>
+</html>

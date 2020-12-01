@@ -6,6 +6,7 @@ from sqlalchemy import exc
 from datetime import datetime
 from utils import read_configs, validate_inserted_email, NMR_CONFIG_PAR, email_validation
 
+
 logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 parameters = [""] * NMR_CONFIG_PAR
@@ -13,6 +14,7 @@ input_message =  "Enter E-mail address"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_database.sqlite3'
+
 
 db = SQLAlchemy(app)
 class users_database(db.Model):
@@ -64,15 +66,13 @@ def landing_page_post():
 
     return redirect(url_for("landing_page_get"))
 
-@app.route("/view")
+@app.route("/view", methods=['POST'])
 def view():
-    readed = []
-
-    logging.debug(users_database.query.all())
+    logging.debug("Inside view")
     users = users_database.query.all()
     readed_dict = {user.email: user.datetime for user in users}
 
-    return render_template("view.html", readed = readed_dict)
+    return render_template("login.html", readed = readed_dict)
 
 
 def initialization():
