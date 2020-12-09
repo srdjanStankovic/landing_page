@@ -1,22 +1,29 @@
 <!doctype html>
 <html  lang = "en">
   <head>
-    <title>pedaGoga</title>
+    <title>pedaGoga user list</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
-    <table>
-      <tr>
-        <th>Email</th>
-        <th>Date&Time</th>
-      </tr>
-      {% for email, datetime in readed.items() %}
-         <tr>
-              <th> {{ email }} </th>
-              <td> {{ datetime }} </td>
-         </tr>
-      {% endfor %}
-    </table>
+  <body>
+    <div>
+      <h2>pedaGoga  <br/>subscribed user list</h2>
+    </div>
+    <br>
+    <div class="division_midlle">
+      <table>
+        <tr>
+          <th>Email</th>
+          <th>Date&Time</th>
+        </tr>
+        {% for email, datetime in readed.items() %}
+           <tr>
+                <th> {{ email }} </th>
+                <td> {{ datetime }} </td>
+           </tr>
+        {% endfor %}
+      </table>
+    </div>
     <div>
       <form type="form" method="post">
         <input type="Submit" value="Log out">

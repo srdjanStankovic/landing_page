@@ -18,9 +18,16 @@ body { margin: auto;}
   padding: 0px;
 }
 
-.division_404{
+.division_small{
   margin-left: 40%;
   margin-right: 40%;
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+.division_midlle{
+  margin-left: 20%;
+  margin-right: 20%;
   margin-top: 0em;
   margin-bottom: 0em;
 }
@@ -133,12 +140,13 @@ ul {
 }
 
 table {
+  display: inline-block;
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
 }
 
 td, th {
+  width: 100%;
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
