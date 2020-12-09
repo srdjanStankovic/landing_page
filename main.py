@@ -137,7 +137,7 @@ def initialization():
     global parameters
     try:
         parameters = read_configs()
-        db.create_all()
+        #db.create_all()
     except:
         logging.error("Web server failed to configure!")
         render_template("maintaine.html")
