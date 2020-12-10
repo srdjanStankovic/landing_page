@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-    <div>
+    <div >
       <h2>pedaGoga  <br/>subscribed user list</h2>
     </div>
     <br>
@@ -26,6 +26,7 @@
     </div>
     <div>
       <form type="form" method="post">
+        <input type="Submit" name="export_users_list" value="Export User List">
         <input type="Submit" name="empty_list" value="Empty List">
         <input type="Submit" name="refresh_page" value="Refresh Page">
         <input type="Submit" name="log_out" value="Log out">

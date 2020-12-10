@@ -29,6 +29,19 @@ class users_database(db.Model):
       self.email = email
       self.datetime = datetime
 
+def get_user_list():
+    users = users_database.query.all()
+
+    return {user.email: user.datetime for user in users}
+
+def insert_new_entrance(new_entrance):
+    db.session.add(new_entrance)
+    db.session.commit()
+
+def empty_user_list():
+    db.session.query(users_database).delete()
+    db.session.commit()
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -65,10 +78,9 @@ def landing_page_post():
         input_message = "Enter E-mail address"
     elif validation == email_validation.TRUE:
         utc = datetime.utcnow()
-        entrance = users_database(email, utc)
+
         try:
-            db.session.add(entrance)
-            db.session.commit()
+            insert_new_entrance(users_database(email, utc))
             input_message = "Thanks for subscribing"
             logging.debug(input_message)
         except exc.IntegrityError:
@@ -126,8 +138,15 @@ def view_post():
         return redirect(url_for('view_get'))
 
     elif 'empty_list' in request.form:
-        logging.debug("Empty list: TODO")
-        #TODO: empty DB
+        logging.debug("Empty list")
+
+        empty_user_list()
+        return redirect(url_for('view_get'))
+
+    elif 'export_users_list' in request.form:
+        logging.debug("Export user list")
+        #TODO: Export DB into csv
+        logging.debug(get_user_list())
         return redirect(url_for('view_get'))
 
     else:
@@ -141,9 +160,7 @@ def view_get():
     if current_user.is_authenticated:
         logging.debug("The logged in user is " + current_user.username)
 
-        users = users_database.query.all()
-        readed_dict = {user.email: user.datetime for user in users}
-        return render_template("view.html", readed = readed_dict)
+        return render_template("view.html", readed = get_user_list())
     else:
         logging.debug("User isn't authorised!")
         return redirect(url_for('index_get'))
@@ -166,6 +183,6 @@ def page_not_found(e):
 
 initialization()
 
-#TODO: copy to clipboard all emails, extract it as txt, empty base, insert admin in db!
+#TODO: copy to clipboard all emails, extract it as txt, insert admin in db!
 if __name__ == '__main__':
     app.run(parameters[0], parameters[1], debug=True)
