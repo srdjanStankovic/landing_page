@@ -45,7 +45,8 @@ def load_user(user_id):
 
 @app.route("/", methods = ['GET'])
 def landing_page_get():
-    logging.debug("It's GET")
+    logging.debug("landing_page_get entrance")
+    #TODO: buttons/inputs doesn't works
 
     return render_template("index.html", parameters = parameters, input_message = input_message)
 
@@ -53,7 +54,7 @@ def landing_page_get():
 def landing_page_post():
     email = ''
     global input_message
-    logging.debug("It's POST")
+    logging.debug("landing_page_post entrance")
     logging.info("Web server started!")
 
     email = request.form.get('email')
@@ -115,8 +116,23 @@ def view_post():
     logging.debug("view_post entrance")
     logging.info("You will be logout as " + current_user.username)
 
-    logout_user()
-    return redirect(url_for('index_post'))
+    if 'log_out' in request.form:
+        logging.debug("Logout user")
+        logout_user()
+        return redirect(url_for('index_post'))
+
+    elif 'refresh_page' in request.form:
+        logging.debug("Refresh page")
+        return redirect(url_for('view_get'))
+
+    elif 'empty_list' in request.form:
+        logging.debug("Empty list: TODO")
+        #TODO: empty DB
+        return redirect(url_for('view_get'))
+
+    else:
+        logging.debug("Unknown form validation occurs!")
+        return redirect(url_for('view_get'))
 
 @app.route('/view', methods = ['GET'])
 def view_get():
@@ -137,7 +153,7 @@ def initialization():
     global parameters
     try:
         parameters = read_configs()
-        #db.create_all()
+        db.create_all()
     except:
         logging.error("Web server failed to configure!")
         render_template("maintaine.html")
