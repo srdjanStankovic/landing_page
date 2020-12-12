@@ -5,7 +5,7 @@ body { margin: auto;}
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 55%;
+  width: 50%;
 }
 
 .division {
@@ -14,7 +14,7 @@ body { margin: auto;}
   margin-left: 2em;
   margin-right: 2em;
   margin-top: 0em;
-  margin-bottom: 0.1em;
+  margin-bottom: 0em;
   padding: 0px;
 }
 
@@ -34,14 +34,14 @@ body { margin: auto;}
 
 h1 {
   text-align: center;
-  font-size: 1em;
+  font-size: 0.8em;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
 h2 {
   text-align: center;
-  font-size: 3em;
+  font-size: 4em;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -54,7 +54,7 @@ h3 {
 }
 
 p {
-  font-size: 0.4em;
+  font-size: 0.35em;
   display: block;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -62,7 +62,7 @@ p {
 
 form {
   text-align: center;
-  margin-top: 2em;
+  margin-top: 0.75em;
   padding: 0px;
 }
 
@@ -116,28 +116,19 @@ ul {
 
 .social-icons {
   text-align: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .social-icons li {
   list-style-type:none;
   -moz-user-select:none;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-top: 0.75em;
   }
-
-.social-icons li a {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-top: 0px;
-}
 
 .social-icons li img {
   max-width: 35px;
   max-height:35px;
-  margin-top: 0px;
-  margin-bottom: 0px;
 }
 
 table {
