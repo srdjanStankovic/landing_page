@@ -61,6 +61,7 @@ def empty_user_list():
     db.session.query(users_database).delete()
     db.session.commit()
 
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -104,8 +105,9 @@ def landing_page_post():
 
             try:
                 insert_new_entrance(users_database(email, utc))
-                input_message = "Thanks for subscribing"
+                input_message = "Enter E-mail address"
                 logging.debug(input_message)
+                return redirect(url_for("thanks_for_subscribing"))
             except exc.IntegrityError:
                 db.session.rollback()
                 input_message = "User already exist. Please enter new email."
@@ -120,6 +122,17 @@ def landing_page_post():
         logging.error("Unknown form inserted")
 
     return redirect(url_for("landing_page_get"))
+
+
+@app.route("/thanks_for_subscribing", methods=["GET"])
+def thanks_for_subscribing():
+    logging.debug("thanks_for_subscribing entrance")
+
+    return render_template(
+        "thanks_for_subscribing.html",
+        parameters=parameters,
+        input_message=input_message,
+    )
 
 
 @app.route("/login", methods=["POST"])
@@ -166,6 +179,7 @@ def generate_download_csv():
 
     return Response(generate(), mimetype="text/csv")
 
+
 @app.route("/view", methods=["POST"])
 def view_post():
     logging.debug("view_post entrance")
@@ -194,6 +208,7 @@ def view_post():
     else:
         logging.debug("Unknown form validation occurs!")
         return redirect(url_for("view_get"))
+
 
 @app.route("/view", methods=["GET"])
 def view_get():
@@ -227,6 +242,6 @@ def page_not_found(e):
 
 initialization()
 
-# TODO: Deployment, insert admin in db, refactor
+# TODO: Deployment:https it is up to goDaddy, Heroku specific issues(delete data base after shootdown), insert admin in db, refactor
 if __name__ == "__main__":
     app.run(parameters[0], parameters[1], debug=True)

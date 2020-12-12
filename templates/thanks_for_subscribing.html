@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <title>pedaGoga</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+     <img src={{parameters[7]}} alt="logo" class="center">
+     <div class="division">
+       <h1>{{parameters[5]}}</h1>
+       <p>{{parameters[6]}}</p>
+     </div>
+     <form type="form" method="post">
+         <input type="email" name="email" placeholder="Thanks for subscribing" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+         <input type="submit" name="submit" value="Submit">
+     </form>
+     <div class="division">
+       <ul class="social-icons">
+         <!--<li><a href={{parameters[2]}}><img src='static/social_networks_icons/facebook_logo.png' /></a></li>-->
+         <li><a href={{parameters[3]}}><img src='static/social_networks_icons/instagram_logo.png' /></a></li>
+         <!--<li><a href={{parameters[4]}}><img src='static/social_networks_icons/youtube_logo.png' /></a></li>-->
+       </ul>
+     </div>
+  </body>
+</html>
