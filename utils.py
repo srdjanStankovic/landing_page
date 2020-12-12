@@ -4,17 +4,22 @@ import yaml
 from enum import IntEnum
 from email_validator import validate_email, EmailNotValidError
 
+
 class email_validation(IntEnum):
-   FALSE = -1
-   NONE = 0
-   TRUE = 1
+    FALSE = -1
+    NONE = 0
+    TRUE = 1
+
 
 NMR_CONFIG_PAR = 8
+
+SUBSCRIBED_USERS_FILE_NAME = "output.csv"
+
 
 def read_configs():
     parameters = [""] * NMR_CONFIG_PAR
 
-    with open(r'config.yaml') as file:
+    with open(r"config.yaml") as file:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         config_list = yaml.load(file, Loader=yaml.FullLoader)
@@ -43,17 +48,18 @@ def read_configs():
         logging.debug(parameters)
         return parameters
 
+
 def validate_inserted_email(email):
     logging.debug(email)
     if email == None:
         return email_validation.NONE
 
     try:
-      valid = validate_email(email)
-      email = valid.email
+        valid = validate_email(email)
+        email = valid.email
     except EmailNotValidError as e:
-      # email is not valid, exception message is human-readable
-      logging.error(str(e))
-      return email_validation.FALSE
+        # email is not valid, exception message is human-readable
+        logging.error(str(e))
+        return email_validation.FALSE
 
     return email_validation.TRUE

@@ -66,6 +66,7 @@ form {
   padding: 0px;
 }
 
+
 input[type=email] {
   width: 50%;
   margin-left: 25%;
@@ -169,4 +170,7 @@ label {
   text-align: center;
   font-size: 1.75em;
   font-weight: bold;
+}
+label[type=space] {
+  padding: 10%;
 }
