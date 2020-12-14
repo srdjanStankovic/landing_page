@@ -22,10 +22,10 @@ from utils import (
 
 
 logging.basicConfig(level=logging.DEBUG)
-app = Flask(__name__)
 parameters = [""] * NMR_CONFIG_PAR
 input_message = "Enter E-mail address"
 
+app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users_database.sqlite3"
 app.config["SQLALCHEMY_BINDS"] = {"login": "sqlite:///login.db"}
 app.config[
@@ -33,12 +33,13 @@ app.config[
 ] = '8:Y_*%DXNLy}.$9c,x"tZjX(f`#|?{H*/DGasGgBc]<Ud+G&o/*tGeGlkFSI^`&'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+
 db = SQLAlchemy(app)
 
 
 class users_database(db.Model):
-    email = db.Column("email", db.String(254), primary_key=True)
     logging.debug("Setup database")
+    email = db.Column("email", db.String(254), primary_key=True)
     datetime = db.Column(db.Integer)
 
     def __init__(self, email, datetime):
@@ -61,6 +62,8 @@ def empty_user_list():
     db.session.query(users_database).delete()
     db.session.commit()
 
+def rollback_database():
+    db.session.rollback()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -109,10 +112,11 @@ def landing_page_post():
                 logging.debug(input_message)
                 return redirect(url_for("thanks_for_subscribing"))
             except exc.IntegrityError:
-                db.session.rollback()
+                rollback_database()
                 input_message = "User already exist. Please enter new email."
                 logging.error("User already exist!")
             except:
+                rollback_database()
                 input_message = "Please enter again"
                 logging.error("Failed to enter new record in the database!")
         else:
@@ -242,6 +246,6 @@ def page_not_found(e):
 
 initialization()
 
-# TODO: Deployment:https it is up to goDaddy, Heroku specific issues(delete data base after shootdown), insert admin in db, refactor
+# TODO: Heroku specific issues(delete data base after shootdown), refactor, session problem
 if __name__ == "__main__":
     app.run(parameters[0], parameters[1], debug=True)
