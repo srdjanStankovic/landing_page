@@ -4,6 +4,8 @@ import yaml
 from enum import IntEnum
 from email_validator import validate_email, EmailNotValidError
 
+from sources import app
+from .models import init_application
 
 class email_validation(IntEnum):
     FALSE = -1
@@ -21,12 +23,10 @@ def read_configs():
     parameters = [""] * NMR_CONFIG_PAR
 
     with open(r"config.yaml") as file:
-        # The FullLoader parameter handles the conversion from YAML
-        # scalar values to Python the dictionary format
         config_list = yaml.load(file, Loader=yaml.FullLoader)
 
         for key, value in config_list.items():
-            logging.debug(key + " : " + str(value))
+            #logging.debug(key + " : " + str(value))
 
             if key == "host":
                 parameters[0] = value
@@ -46,7 +46,7 @@ def read_configs():
                 parameters[7] = value
             else:
                 logging.error("Unsupported key: " + key)
-        logging.debug(parameters)
+        #logging.debug(parameters)
         return parameters
 
 
@@ -64,3 +64,14 @@ def validate_inserted_email(email):
         return email_validation.FALSE
 
     return email_validation.TRUE
+
+def initialization():
+    logging.info("Configuring web server")
+
+    try:
+        init_application(app)
+    except:
+        logging.error("Web server failed to configure!")
+        #render_template("maintaine.html")
+
+    logging.info("Web server configured!")
