@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import logging
-from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, Response
+from datetime import datetime, timedelta
+from flask import Flask, render_template, request, redirect, url_for, Response, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
     LoginManager,
@@ -18,14 +18,15 @@ from utils import (
     NMR_CONFIG_PAR,
     email_validation,
     SUBSCRIBED_USERS_FILE_NAME,
+    BROWSER_SESSION_LIFETIME
 )
 
 
 logging.basicConfig(level=logging.DEBUG)
-app = Flask(__name__)
 parameters = [""] * NMR_CONFIG_PAR
 input_message = "Enter E-mail address"
 
+app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users_database.sqlite3"
 app.config["SQLALCHEMY_BINDS"] = {"login": "sqlite:///login.db"}
 app.config[
@@ -33,12 +34,13 @@ app.config[
 ] = '8:Y_*%DXNLy}.$9c,x"tZjX(f`#|?{H*/DGasGgBc]<Ud+G&o/*tGeGlkFSI^`&'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+
 db = SQLAlchemy(app)
 
 
 class users_database(db.Model):
-    email = db.Column("email", db.String(254), primary_key=True)
     logging.debug("Setup database")
+    email = db.Column("email", db.String(254), primary_key=True)
     datetime = db.Column(db.Integer)
 
     def __init__(self, email, datetime):
@@ -61,6 +63,8 @@ def empty_user_list():
     db.session.query(users_database).delete()
     db.session.commit()
 
+def rollback_database():
+    db.session.rollback()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -77,10 +81,20 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=BROWSER_SESSION_LIFETIME)
 
 @app.route("/", methods=["GET"])
 def landing_page_get():
     logging.debug("landing_page_get entrance")
+
+    global input_message
+
+    if not "already_participated" in session:
+        logging.debug("not already_participated")
+        input_message = "Enter E-mail address"
 
     return render_template(
         "index.html", parameters=parameters, input_message=input_message
@@ -105,14 +119,15 @@ def landing_page_post():
 
             try:
                 insert_new_entrance(users_database(email, utc))
-                input_message = "Enter E-mail address"
+                input_message = "Thanks for subscribing."
                 logging.debug(input_message)
-                return redirect(url_for("thanks_for_subscribing"))
+                session["already_participated"] = True
             except exc.IntegrityError:
-                db.session.rollback()
+                rollback_database()
                 input_message = "User already exist. Please enter new email."
                 logging.error("User already exist!")
             except:
+                rollback_database()
                 input_message = "Please enter again"
                 logging.error("Failed to enter new record in the database!")
         else:
@@ -122,18 +137,6 @@ def landing_page_post():
         logging.error("Unknown form inserted")
 
     return redirect(url_for("landing_page_get"))
-
-
-@app.route("/thanks_for_subscribing", methods=["GET"])
-def thanks_for_subscribing():
-    logging.debug("thanks_for_subscribing entrance")
-
-    return render_template(
-        "thanks_for_subscribing.html",
-        parameters=parameters,
-        input_message=input_message,
-    )
-
 
 @app.route("/login", methods=["POST"])
 def index_post():
@@ -183,7 +186,6 @@ def generate_download_csv():
 @app.route("/view", methods=["POST"])
 def view_post():
     logging.debug("view_post entrance")
-    logging.info("You will be logout as " + current_user.username)
 
     if "log_out" in request.form:
         logging.debug("Logout user")
@@ -242,6 +244,6 @@ def page_not_found(e):
 
 initialization()
 
-# TODO: Deployment:https it is up to goDaddy, Heroku specific issues(delete data base after shootdown), insert admin in db, refactor
+# TODO: Heroku specific issues(delete data base after shootdown), refactor
 if __name__ == "__main__":
     app.run(parameters[0], parameters[1], debug=True)

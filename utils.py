@@ -15,6 +15,7 @@ NMR_CONFIG_PAR = 8
 
 SUBSCRIBED_USERS_FILE_NAME = "output.csv"
 
+BROWSER_SESSION_LIFETIME = 3
 
 def read_configs():
     parameters = [""] * NMR_CONFIG_PAR
