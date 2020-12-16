@@ -5,7 +5,7 @@ from enum import IntEnum
 from email_validator import validate_email, EmailNotValidError
 
 from sources import app
-from .models import init_application
+from .models import init_application, create_database
 
 class email_validation(IntEnum):
     FALSE = -1
@@ -70,6 +70,7 @@ def initialization():
 
     try:
         init_application(app)
+        create_database()
     except:
         logging.error("Web server failed to configure!")
         #render_template("maintaine.html")
