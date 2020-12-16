@@ -59,20 +59,7 @@ def validate_inserted_email(email):
         valid = validate_email(email)
         email = valid.email
     except EmailNotValidError as e:
-        # email is not valid, exception message is human-readable
         logging.error(str(e))
         return email_validation.FALSE
 
     return email_validation.TRUE
-
-def initialization():
-    logging.info("Configuring web server")
-
-    try:
-        init_application(app)
-        create_database()
-    except:
-        logging.error("Web server failed to configure!")
-        #render_template("maintaine.html")
-
-    logging.info("Web server configured!")

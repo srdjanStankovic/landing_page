@@ -22,4 +22,4 @@ Invoke following in repo directory:
  Server will run at http://127.127.127.127:8080/
 
 ## Deployment
-TODO!
+Done on Heroku
