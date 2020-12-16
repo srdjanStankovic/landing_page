@@ -7,7 +7,7 @@ from sources.models import init_application
 
 logging.basicConfig(level=logging.DEBUG)
 # TODO: Heroku specific issues(delete data base after shootdown), Database are problems!
-init_application(app)
+#init_application(app)
 if __name__ == "__main__":
     parameters = read_configs()
     app.run(parameters[0], parameters[1])

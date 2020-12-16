@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import logging
 from flask import Flask
+from sources.models import init_application, create_database
 
 __version__ = "0.2.0"
 
@@ -11,6 +12,8 @@ app.config["SECRET_KEY"] = '8:Y_*%DXNLy}.$9c,x"tZjX(f`#|?{H*/DGasGgBc]<Ud+G&o/*t
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['DEBUG'] = True
 
+init_application(app)
+#create_database()
 
 from sources import views
 from sources import models
