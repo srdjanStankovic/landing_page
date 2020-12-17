@@ -6,7 +6,7 @@ Can be done by:
  - uploading new logo image
  - new favicon.icon
  - changing style.ccs into static directory
- - server configuration is possible over `config.yaml` file
+ - server configuration can be changed over `config.yaml` file
 
 ## Prerequisite
  - Python3
@@ -16,10 +16,10 @@ Can be done by:
 ## Running
 Invoke following in repo directory:
  ```
- python3 landing_page.py
+ python3 main.py
  ```
 
- Server will run at http://127.127.127.127:8080/
+ Server will run at yourLocalIP:8080/
 
 ## Deployment
-Done on Heroku
+Done on Heroku using `Procfile`
