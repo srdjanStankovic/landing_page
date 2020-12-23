@@ -13,7 +13,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['DEBUG'] = True
 
 init_application(app)
-#create_database()
+create_database()
 
 from sources import views
 from sources import models
