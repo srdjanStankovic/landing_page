@@ -2,7 +2,6 @@
 
 port: 8080
 host: "0.0.0.0"
-
 central_image: "static/logo.svg"
 
 instagram: "https://www.instagram.com/"

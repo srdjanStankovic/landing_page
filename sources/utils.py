@@ -26,11 +26,11 @@ def read_configs():
         config_list = yaml.load(file, Loader=yaml.FullLoader)
 
         for key, value in config_list.items():
-            #logging.debug(key + " : " + str(value))
+            logging.debug(key + " : " + str(value))
 
             if key == "host":
                 parameters[0] = value
-            if key == "port":
+            elif key == "port":
                 parameters[1] = value
             elif key == "facebook":
                 parameters[2] = value
@@ -46,7 +46,7 @@ def read_configs():
                 parameters[7] = value
             else:
                 logging.error("Unsupported key: " + key)
-        #logging.debug(parameters)
+
         return parameters
 
 

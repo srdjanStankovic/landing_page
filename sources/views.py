@@ -66,6 +66,7 @@ def landing_page_post():
 
             try:
                 insert_new_entrance(users_database(email, utc))
+                logging.debug("Succesull user database entrance.")
                 input_message = "Thanks for subscribing."
                 logging.debug(input_message)
                 session["already_participated"] = True
