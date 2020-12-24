@@ -5,7 +5,7 @@ from sources.utils import read_configs
 from sources.models import db
 from sources.models import init_application
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, filename="pedagoga.log")
 
 # TODO: Heroku specific issues(delete data base after shootdown), Database are problems!
 if __name__ == "__main__":

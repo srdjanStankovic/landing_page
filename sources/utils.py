@@ -26,7 +26,7 @@ def read_configs():
         config_list = yaml.load(file, Loader=yaml.FullLoader)
 
         for key, value in config_list.items():
-            logging.debug(key + " : " + str(value))
+            #logging.debug(key + " : " + str(value))
 
             if key == "host":
                 parameters[0] = value
