@@ -10,10 +10,6 @@ logging.basicConfig(level=logging.DEBUG)
 # TODO: Heroku specific issues(delete data base after shootdown), Database are problems!
 if __name__ == "__main__":
     logging.info("Starting web server")
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-    app.logger.debug('Starting web server')
 
     parameters = read_configs()
     try:
